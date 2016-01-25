@@ -1,0 +1,70 @@
+body {
+    background: url(images/workshop_background.jpg);
+    background-position: center 0px;
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
+
+button {
+    background: black;
+    color: floralwhite;
+    width:55px;
+    height:55px;
+    font-weight: normal;
+    font-variant: normal;
+    font-style: italic;
+    font-size: 12px;
+    font-family: Arial;
+    text-align: center;
+    margin: 0 auto;
+}
+
+h1 {
+    color: floralwhite;
+    margin:0 auto;
+    width:400px;
+    height:200px;
+    font-weight: normal;
+    font-variant: normal;
+    font-style: italic;
+    font-size: 40px;
+    font-family: Magneto;
+}
+
+h2 {
+    color: floralwhite;
+    width:240px;
+    height:80px;
+    font-weight: normal;
+    font-variant: normal;
+    font-style: italic;
+    font-size: 26px;
+    font-family: Magneto;
+}
+
+.add {
+    height: 300px;
+    width: 230px;
+    position: fixed;
+    bottom: 300px;
+    left:650px;
+    text-align: center;
+}
+
+.edit {
+    height: 300px;
+    width: 230px;
+    position: fixed;
+    bottom: 300px;
+    left:900px;
+    text-align: center;
+}
+
+.delete {
+    height: 300px;
+    width: 230px;
+    position: fixed;
+    bottom: 300px;
+    left:400px;
+    text-align: center;
+}

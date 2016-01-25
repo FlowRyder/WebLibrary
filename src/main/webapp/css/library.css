@@ -1,0 +1,65 @@
+body {
+    background: url(images/library_background.jpg);
+    background-position: center 0px;
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
+
+h1 {
+    color: floralwhite;
+    font-weight: normal;
+    font-variant: normal;
+    font-style: italic;
+    font-size: 20px;
+    font-family: Magneto;
+}
+
+p {
+    color: floralwhite;
+    font-weight: normal;
+    font-variant: normal;
+    font-style: italic;
+    font-size: 12px;
+    font-family: Magneto;
+}
+
+.book {
+    height: 65px;
+    width: 200px;
+    background-color: black;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.issue_date {
+    height: 250px;
+    width: 200px;
+    background-color: black;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.return_date {
+    height: 250px;
+    width: 200px;
+    background-color: black;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.choose_button {
+    width: 85px;
+    height: 40px;
+    font-size: 15px;
+    background-color: black;
+    color: floralwhite;
+    font-family: Arial;
+    margin: 0 auto;
+}
+
+form {
+    height: 800px;
+    width: 200px;
+    margin: 0 auto;
+    text-align: center;
+}

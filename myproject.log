@@ -1,0 +1,10 @@
+12:37:00,294  INFO main ExecuteConsoleCommand:main:21 - To use console app enter console
+12:37:00,298  INFO main ExecuteConsoleCommand:main:22 - To use scenario enter scenario
+12:37:00,298  INFO main ExecuteConsoleCommand:main:23 - To use server enter server
+12:37:07,062  INFO main ExecuteConsoleCommand:console:44 - Enter command:
+12:37:11,866  WARN main AddGenre:checkLibrarian:19 - Error: User isn't logged in.
+12:37:54,878  INFO main ExecuteConsoleCommand:main:21 - To use console app enter console
+12:37:54,880  INFO main ExecuteConsoleCommand:main:22 - To use scenario enter scenario
+12:37:54,880  INFO main ExecuteConsoleCommand:main:23 - To use server enter server
+12:37:58,198  INFO main ExecuteConsoleCommand:console:44 - Enter command:
+12:38:01,386  WARN main AddGenre:checkLibrarian:19 - Error: User isn't logged in.

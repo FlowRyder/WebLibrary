@@ -1,0 +1,55 @@
+body {
+    background: url(images/welcome_background.jpg);
+    background-position: center 0px;
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
+
+h1 {
+    color: floralwhite;
+    margin:0 auto;
+    width:600px;
+    height:200px;
+    font-weight: normal;
+    font-variant: normal;
+    font-style: italic;
+    font-size: 120px;
+    font-family: Magneto;
+}
+
+h2 {
+    color: floralwhite;
+    width:400px;
+    height:100px;
+    font-weight: normal;
+    font-variant: normal;
+    font-style: italic;
+    font-size: 30px;
+    font-family: Magneto;
+    position: fixed;
+    left: 760px;
+    bottom: 350px;
+}
+
+button {
+    background: black;
+    color: floralwhite;
+    width:240px;
+    height:80px;
+    font-weight: normal;
+    font-variant: normal;
+    font-style: italic;
+    font-size: 30px;
+    font-family: Magneto;
+}
+
+.login {
+    position: fixed;
+    left: 830px;
+}
+
+.registration {
+    position: fixed;
+    left: 830px;
+    bottom: 550px;
+}

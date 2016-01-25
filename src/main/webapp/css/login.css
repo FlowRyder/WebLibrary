@@ -1,0 +1,43 @@
+body {
+    background: url(images/welcome_background.jpg);
+    background-position: center 0px;
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
+
+form {
+    background-color: inherit;
+    width: 300px;
+    height: 185px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+h1 {
+    color: floralwhite;
+    font-weight: normal;
+    font-variant: normal;
+    font-style: italic;
+    font-size: 40px;
+    font-family: Magneto;
+}
+
+input {
+    width: 250px;
+    height: 45px;
+    font-size: 30px;
+    background-color: black;
+    color: floralwhite;
+    font-family: Arial;
+}
+
+.login-submit {
+    width: 85px;
+    height: 40px;
+    font-size: 15px;
+    background-color: black;
+    color: floralwhite;
+    font-family: Arial;
+    margin: 0 auto;
+    text-align: center;
+}
