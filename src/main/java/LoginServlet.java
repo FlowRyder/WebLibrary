@@ -26,12 +26,13 @@ public class LoginServlet extends HttpServlet {
         String password = request.getParameter("user-password");
 
 
-        Socket localhost = new Socket("localhost", 4444);
+        /*Socket localhost = new Socket("localhost", 4444);
         BufferedReader input = new BufferedReader(new InputStreamReader(localhost.getInputStream()));
-        PrintWriter output = new PrintWriter(localhost.getOutputStream(), true);
+        PrintWriter output = new PrintWriter(localhost.getOutputStream(), true);*/
         BufferedReader inputSystem = new BufferedReader(new InputStreamReader(System.in));
-        output.println("log_in " + login + " " + password);
-        String string = input.readLine();
+        SocketConnection.output.println("log_in " + login + " " + password);
+        String string = SocketConnection.input.readLine();
+        //httpSession.getServletContext().addListener(localhost.toString());
         System.out.println(string);
         if(string.equals("1")) {
             RequestDispatcher rs = request.getRequestDispatcher("workshop.html");

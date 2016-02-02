@@ -5,6 +5,26 @@
 <web-app>
 
   <servlet>
+    <servlet-name>EditGenre</servlet-name>
+    <servlet-class>EditGenreServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>EditGenre</servlet-name>
+    <url-pattern>/editgenre</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>AddGenre</servlet-name>
+    <servlet-class>AddGenreServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>AddGenre</servlet-name>
+    <url-pattern>/addgenre</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
     <servlet-name>Login</servlet-name>
     <servlet-class>LoginServlet</servlet-class>
   </servlet>
