@@ -5,23 +5,13 @@
 <web-app>
 
   <servlet>
-    <servlet-name>EditGenre</servlet-name>
-    <servlet-class>EditGenreServlet</servlet-class>
-  </servlet>
-
-  <servlet-mapping>
-    <servlet-name>EditGenre</servlet-name>
-    <url-pattern>/editgenre</url-pattern>
-  </servlet-mapping>
-
-  <servlet>
     <servlet-name>AddAuthor</servlet-name>
     <servlet-class>AddAuthorServlet</servlet-class>
   </servlet>
 
   <servlet-mapping>
     <servlet-name>AddAuthor</servlet-name>
-    <url-pattern>/addauthor</url-pattern>
+    <url-pattern>/author</url-pattern>
   </servlet-mapping>
 
   <servlet>
@@ -31,7 +21,17 @@
 
   <servlet-mapping>
     <servlet-name>AddGenre</servlet-name>
-    <url-pattern>/addgenre</url-pattern>
+    <url-pattern>/genre</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>AddBook</servlet-name>
+    <servlet-class>AddBookServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>AddBook</servlet-name>
+    <url-pattern>/book</url-pattern>
   </servlet-mapping>
 
   <servlet>

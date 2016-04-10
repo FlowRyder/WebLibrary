@@ -7,25 +7,63 @@
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
     <script>
         $(document).ready(function(){
-            $("#login-button").click(function(){
-                var userPassword = $("input#userPassword").val();
-                var userLogin = $("input#userLogin").val();
-                var dataString = "log_in " + userLogin + " " + userPassword;
+
+            $("#add-author-button").click(function(){
+                var authorName = $("input#authorName").val();
                 $.ajax({
                     type: "POST",
-                    url: "http://localhost:8181/library/login",
-                    data: { login: userLogin, password: userPassword },
+                    url: "author",
+                    data: { authorName: authorName },
                     dataType: "text",
                     success: function(data) {
-                        alert("Welcome!");
+                        alert(data.toString());
                     },
                     error: function(jqXHR,textStatus,errorThrown) {
-                        alert(jqXHR);
-                        alert(textStatus);
-                        alert(errorThrown);
+                        console.log(jqXHR);
+                        alert("Error report\n" + "jqXHR = " + jqXHR.status + "\n" + "textStatus = " + textStatus + "\n" +
+                                "errorThrown =  " + errorThrown);
                     }
                 });
             });
+
+            $("#add-genre-button").click(function(){
+                var genreName = $("input#genreName").val();
+                $.ajax({
+                    type: "POST",
+                    url: "genre",
+                    data: { genreName: genreName },
+                    dataType: "text",
+                    success: function(data) {
+                        alert(data.toString());
+                    },
+                    error: function(jqXHR,textStatus,errorThrown) {
+                        console.log(jqXHR);
+                        alert("Error report\n" + "jqXHR = " + jqXHR.status + "\n" + "textStatus = " + textStatus + "\n" +
+                                "errorThrown =  " + errorThrown);
+                    }
+                });
+            });
+
+            $("#add-book-button").click(function(){
+                var bookName = $("input#bookName").val();
+                var authorBook = $("input#authorBook").val();
+                var genreBook = $("input#genreBook").val();
+                $.ajax({
+                    type: "POST",
+                    url: "book",
+                    data: { bookName: bookName, authorBook: authorBook, genreBook: genreBook },
+                    dataType: "text",
+                    success: function(data) {
+                        alert(data.toString());
+                    },
+                    error: function(jqXHR,textStatus,errorThrown) {
+                        console.log(jqXHR);
+                        alert("Error report\n" + "jqXHR = " + jqXHR.status + "\n" + "textStatus = " + textStatus + "\n" +
+                                "errorThrown =  " + errorThrown);
+                    }
+                });
+            });
+
         });
     </script>
 </head>
@@ -46,21 +84,42 @@
             });
         </script>
         <form id="add_author" style="display:none">
-            <input type="text" id="author_name" placeholder="Enter new author name"/>
-            <button class="add_button" type="submit">Add</button>
+            <input type="text" id="authorName" placeholder="Enter new author name"/>
+            <button id="add-author-button" class="add_button" type="submit">Add</button>
         </form>
 
-        <div id="content"></div>
+        <form>
+            <button id="addGenre" type="button">Add genre</button>
+        </form>
+        <script>
+            $(document).ready(function(){
+                $("#addGenre").click(function(){
+                    $("#add_genre").show();
+                });
+            });
+        </script>
+        <form id="add_genre" style="display:none">
+            <input type="text" id="genreName" placeholder="Enter new genre name"/>
+            <button id="add-genre-button" class="add_button" type="submit">Add</button>
+        </form>
 
-        <form id="swag">
-            <button type="submit">Add genre</button>
+        <form>
+            <button id="addBook" type="button">Add book</button>
         </form>
-        <form action="add_booktype.html">
-            <button type="submit">Add book type</button>
+        <script>
+            $(document).ready(function(){
+                $("#addBook").click(function(){
+                    $("#add_book").show();
+                });
+            });
+        </script>
+        <form id="add_book" style="display:none">
+            <input type="text" id="bookName" placeholder="Enter book name"/>
+            <input type="text" id="authorBook" placeholder="Enter author name"/>
+            <input type="text" id="genreBook" placeholder="Enter genre name"/>
+            <button id="add-book-button" class="add_button" type="submit">Add</button>
         </form>
-        <form action="add_book.html">
-            <button type="submit">Add book</button>
-        </form>
+
     </div>
 
 </body>

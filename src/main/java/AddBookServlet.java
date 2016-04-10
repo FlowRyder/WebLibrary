@@ -1,23 +1,18 @@
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.net.Socket;
 
 /**
  * Created by FlowRyder.
  */
-public class RegistrationServlet extends HttpServlet {
+public class AddBookServlet extends HttpServlet {
 
-    @Override
-    protected void service(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         SocketConnection.setConnection(request, response);
         ServletContext sessionServletContext = request.getSession().getServletContext();
@@ -28,18 +23,22 @@ public class RegistrationServlet extends HttpServlet {
                 sessionServletContext.getAttribute(SocketConnection.OUTPUT_STREAM);
         PrintWriter outputClient = response.getWriter();
 
-        String login = request.getParameter("login");
-        String password = request.getParameter("password");
-        String name = request.getParameter("name");
-        String email = request.getParameter("email");
-        String serverRequest = "register " + name + " " + login + " " + email + " " + password + " reader";
+        String authorName = request.getParameter("authorBook");
+        String serverRequest = "find_by_author " + authorName;
+        outputServer.println(serverRequest);
+        String authorID = inputServer.readLine();
+
+        String genreName = request.getParameter("genreBook");
+        serverRequest = "find_by_genre " + genreName;
+        outputServer.println(serverRequest);
+        String genreID = inputServer.readLine();
+
+        String bookName = request.getParameter("bookName");
+        serverRequest = "add_bookType " + bookName + " " + genreID + " " + authorID;
         outputServer.println(serverRequest);
         String serverResponse = inputServer.readLine();
 
-        if (serverResponse.equals("0")) {
-            outputClient.print("Success");
-        } else {
-            outputClient.print("Wrong login or password");
-        }
+        outputClient.println(serverResponse);
+
     }
 }
