@@ -4,15 +4,55 @@
     <meta charset="UTF-8">
     <title>Workshop</title>
     <link rel="stylesheet" href="css/workshop.css">
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("#login-button").click(function(){
+                var userPassword = $("input#userPassword").val();
+                var userLogin = $("input#userLogin").val();
+                var dataString = "log_in " + userLogin + " " + userPassword;
+                $.ajax({
+                    type: "POST",
+                    url: "http://localhost:8181/library/login",
+                    data: { login: userLogin, password: userPassword },
+                    dataType: "text",
+                    success: function(data) {
+                        alert("Welcome!");
+                    },
+                    error: function(jqXHR,textStatus,errorThrown) {
+                        alert(jqXHR);
+                        alert(textStatus);
+                        alert(errorThrown);
+                    }
+                });
+            });
+        });
+    </script>
 </head>
 <body>
 <h1>Would you like to</h1>
     <div class="add">
         <h2>Add objects to library</h2>
-        <form action="add_author.html">
-            <button type="submit">Add author</button>
+
+
+        <form>
+            <button id="addAuthor" type="button">Add author</button>
         </form>
-        <form action="add_genre.html">
+        <script>
+            $(document).ready(function(){
+                $("#addAuthor").click(function(){
+                    $("#add_author").show();
+                });
+            });
+        </script>
+        <form id="add_author" style="display:none">
+            <input type="text" id="author_name" placeholder="Enter new author name"/>
+            <button class="add_button" type="submit">Add</button>
+        </form>
+
+        <div id="content"></div>
+
+        <form id="swag">
             <button type="submit">Add genre</button>
         </form>
         <form action="add_booktype.html">
@@ -22,35 +62,6 @@
             <button type="submit">Add book</button>
         </form>
     </div>
-    <div class="edit">
-        <h2>Edit objects from library</h2>
-        <form action="edit_author.html">
-            <button type="submit">Edit author</button>
-        </form>
-        <form action="edit_genre.html">
-            <button type="submit">Edit genre</button>
-        </form>
-        <form action="edit_booktype.html">
-            <button type="submit">Edit book type</button>
-        </form>
-        <form action="edit_book.html">
-            <button type="submit">Edit book</button>
-        </form>
-    </div>
-    <div class="delete">
-        <h2>Delete objects from library</h2>
-        <form action="delete_author.html">
-            <button type="submit">Delete author</button>
-        </form>
-        <form action="delete_genre.html">
-            <button type="submit">Delete genre</button>
-        </form>
-        <form action="delete_booktype.html">
-            <button type="submit">Delete book type</button>
-        </form>
-        <form action="delete_book.html">
-            <button type="submit">Delete book</button>
-        </form>
-    </div>
+
 </body>
 </html>

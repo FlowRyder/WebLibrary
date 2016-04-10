@@ -14,16 +14,16 @@ public class EditGenreServlet extends HttpServlet {
             throws ServletException, IOException {
         PrintWriter out = response.getWriter();
 
-        SocketConnection.output.println("load_genres");
-        String string1 = SocketConnection.input.readLine();
+        /*SocketConnection.output.println("load_genres");
+        String string1 = SocketConnection.input.readLine();*/
         //out.println("<html><body>" + string1 + "</body></html>");
-        HashMap<String, String> genres = Parser.getNamedObjectMap(string1);
+        /*HashMap<String, String> genres = Parser.getNamedObjectMap(string1);
         out.println("<html><body>");
         out.println("<select>");
         for (String string : genres.values()) {
             out.println("<option>" + string + "</option>");
         }
         out.println("</select>");
-        out.println("</body></html>");
+        out.println("</body></html>");*/
     }
 }

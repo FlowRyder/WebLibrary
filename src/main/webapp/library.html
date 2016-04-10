@@ -3,35 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <title>Library</title>
+    <script src="http://code.jquery.com/jquery-1.12.2.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("#registration-button").click(function(){
+                var bookName = $("input#bookName").val();
+                var issueDay = $("input#issueDay").val();
+                var issueMonth = $("input#issueMonth").val();
+                var issueYear = $("input#issueYear").val();
+                var returnDay = $("input#returnDay").val();
+                var returnMonth = $("input#returnMonth").val();
+                var returnYear = $("input#returnYear").val();
+                $.ajax({
+                    type: "POST",
+                    url: "library",
+                    data: { bookName: bookName, issueDay: issueDay, issueMonth: issueMonth, issueYear: issueYear,
+                        returnDay: returnDay, returnMonth: returnMonth, returnYear: returnYear},
+                    dataType: "text",
+                    success: function() {
+                        alert("Book successfully choosen.");
+                    },
+                    error: function(jqXHR,textStatus,errorThrown) {
+                        console.log(jqXHR);
+                        alert("Error report\n" + "jqXHR = " + jqXHR.status + "\n" + "textStatus = " + textStatus + "\n" +
+                                "errorThrown =  " + errorThrown);
+                    }
+                });
+            });
+        });
+    </script>
     <link rel="stylesheet" href="css/library.css">
 </head>
 <body>
-<form action="" method="post">
+<form class="library-form">
     <div class="book">
         <h1>Choose book</h1>
-        <select>
-            <option>Pelevin: Generation Pi</option>
-            <option>Sorokin: Metel</option>
-            <option>Kafka: Zamok</option>
-        </select>
+        <input id="bookName" type="text" name="book-name" placeholder="Enter name"/>
     </div>
     <div class="issue_date">
         <h1>When do you want to pick up book?</h1>
         <p>Choose day</p>
-        <input type="number" name="issue_day" min="1" max="31">
+        <input id="issueDay" type="number" name="issue_day" min="1" max="31">
         <p>Choose month</p>
-        <input type="number" name="issue_month" min="1" max="12">
+        <input id="issueMonth" type="number" name="issue_month" min="1" max="12">
         <p>Choose year</p>
-        <input type="number" name="issue_year" min="2016" max="2020">
+        <input id="issueYear" type="number" name="issue_year" min="2016" max="2020">
     </div>
     <div class="return_date">
         <h1>When do you want to return book?</h1>
         <p>Choose day</p>
-        <input type="number" name="return_day" min="1" max="31">
+        <input id="returnDay" type="number" name="return_day" min="1" max="31">
         <p>Choose month</p>
-        <input type="number" name="return_month" min="1" max="12">
+        <input id="returnMonth" type="number" name="return_month" min="1" max="12">
         <p>Choose year</p>
-        <input type="number" name="return_year" min="2016" max="2020">
+        <input id="returnYear" type="number" name="return_year" min="2016" max="2020">
     </div>
     <input class="choose_button" type="submit" value="Choose it!">
 </form>

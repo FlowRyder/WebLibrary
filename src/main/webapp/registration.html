@@ -3,16 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <title>Registration</title>
+    <script src="http://code.jquery.com/jquery-1.12.2.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("#registration-button").click(function(){
+                var userPassword = $("input#userPassword").val();
+                var userLogin = $("input#userLogin").val();
+                var userName = $("input#userName").val();
+                var userEmail = $("input#userEmail").val();
+                $.ajax({
+                    type: "POST",
+                    url: "http://localhost:8181/library/registration",
+                    data: { login: userLogin, password: userPassword, email: userEmail, name: userName },
+                    dataType: "text",
+                    success: function() {
+                        alert("Welcome!");
+                        document.location.href = "http://localhost:8181/library/login.html";
+                    },
+                    error: function(jqXHR,textStatus,errorThrown) {
+                        console.log(jqXHR);
+                        alert("Error report\n" + "jqXHR = " + jqXHR.status + "\n" + "textStatus = " + textStatus + "\n" +
+                                "errorThrown =  " + errorThrown);
+                    }
+                });
+            });
+        });
+    </script>
     <link rel="stylesheet" href="css/registration.css">
 </head>
 <body>
-<form action="/library/registration" method="post">
+<form class="registration-form">
     <h1>Registration Form</h1>
-    <input type="text" name="user-name" placeholder="Enter name"/>
-    <input type="text" name="user-login" placeholder="Enter login"/>
-    <input type="email" name="user-email" placeholder="Enter email"/>
-    <input type="password" name="user-password" placeholder="Enter password"/>
-    <input class="login-submit" type="submit" value="Register"/>
+    <input id="userName" type="text" name="user-name" placeholder="Enter name"/>
+    <input id="userLogin" type="text" name="user-login" placeholder="Enter login"/>
+    <input id="userEmail" type="email" name="user-email" placeholder="Enter email"/>
+    <input id="userPassword" type="password" name="user-password" placeholder="Enter password"/>
+    <input id="registration-button" type="submit" value="Register"/>
 </form>
 </body>
 </html>

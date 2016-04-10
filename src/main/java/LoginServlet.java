@@ -1,45 +1,52 @@
-import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
-import java.net.Socket;
+import java.io.*;
 
 /**
  * Created by FlowRyder.
  */
-//@WebServlet("/library")
+
 public class LoginServlet extends HttpServlet {
 
-    public void service(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    @Override
+    protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        HttpSession httpSession = request.getSession(true);
-        response.setContentType("text/html");
+        SocketConnection.setConnection(request, response);
+        ServletContext sessionServletContext = request.getSession().getServletContext();
 
-        String login = request.getParameter("user-login");
-        String password = request.getParameter("user-password");
+        BufferedReader inputServer = (BufferedReader)
+                sessionServletContext.getAttribute(SocketConnection.INPUT_STREAM);
+        PrintWriter outputServer = (PrintWriter)
+                sessionServletContext.getAttribute(SocketConnection.OUTPUT_STREAM);
+        PrintWriter outputClient = response.getWriter();
 
+        String login = request.getParameter("login");
+        String password = request.getParameter("password");
+        String serverRequest = "log_in " + login + " " + password;
+        outputServer.println(serverRequest);
+        String serverResponse = inputServer.readLine();
 
-        /*Socket localhost = new Socket("localhost", 4444);
-        BufferedReader input = new BufferedReader(new InputStreamReader(localhost.getInputStream()));
-        PrintWriter output = new PrintWriter(localhost.getOutputStream(), true);*/
-        BufferedReader inputSystem = new BufferedReader(new InputStreamReader(System.in));
-        SocketConnection.output.println("log_in " + login + " " + password);
-        String string = SocketConnection.input.readLine();
-        //httpSession.getServletContext().addListener(localhost.toString());
-        System.out.println(string);
-        if(string.equals("1")) {
-            RequestDispatcher rs = request.getRequestDispatcher("workshop.html");
-            rs.forward(request, response);
+        if (serverResponse.equals("0") || serverResponse.equals("1")) {
+            outputClient.print("Success");
+            outputClient.close();
+            response.setStatus(HttpServletResponse.SC_OK);
+            sessionServletContext.setAttribute("login", login);
+            if (serverResponse.equals("0")) {
+                response.sendRedirect("library.html");
+            } else {
+                response.sendRedirect("workshop.html");
+            }
         } else {
-            RequestDispatcher rs = request.getRequestDispatcher("library.html");
-            rs.forward(request, response);
+            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+            outputClient.print("Wrong login or password");
+            outputClient.close();
+            response.sendRedirect("welcome.html");
         }
+
+        ConnectionResult.write(serverRequest, serverResponse);
+
     }
 }

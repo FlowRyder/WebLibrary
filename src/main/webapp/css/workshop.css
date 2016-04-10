@@ -68,3 +68,26 @@ h2 {
     left:400px;
     text-align: center;
 }
+
+input {
+    width: 125px;
+    height: 25px;
+    font-size: 12px;
+    background-color: black;
+    color: floralwhite;
+    font-family: Arial;
+}
+
+.add_button {
+    background: black;
+    color: floralwhite;
+    width:55px;
+    height:30px;
+    font-weight: normal;
+    font-variant: normal;
+    font-style: italic;
+    font-size: 12px;
+    font-family: Arial;
+    text-align: center;
+    margin: 0 auto;
+}

@@ -1,8 +1,11 @@
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.Socket;
@@ -11,19 +14,32 @@ import java.net.Socket;
  * Created by FlowRyder.
  */
 public class RegistrationServlet extends HttpServlet {
+
+    @Override
     public void service(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        HttpSession httpSession = request.getSession(true);
-        response.setContentType("text/html");
+        SocketConnection.setConnection(request, response);
+        ServletContext sessionServletContext = request.getSession().getServletContext();
 
-        String name = request.getParameter("user-name");
-        String login = request.getParameter("user-login");
-        String email = request.getParameter("user-email");
-        String password = request.getParameter("user-password");
+        BufferedReader inputServer = (BufferedReader)
+                sessionServletContext.getAttribute(SocketConnection.INPUT_STREAM);
+        PrintWriter outputServer = (PrintWriter)
+                sessionServletContext.getAttribute(SocketConnection.OUTPUT_STREAM);
+        PrintWriter outputClient = response.getWriter();
 
-        Socket localhost = new Socket("localhost", 4444);
-        PrintWriter output = new PrintWriter(localhost.getOutputStream(), true);
-        output.println("register " + name + " " + login + " " + email + " " + password + " reader");
+        String login = request.getParameter("login");
+        String password = request.getParameter("password");
+        String name = request.getParameter("name");
+        String email = request.getParameter("email");
+        String serverRequest = "register " + name + " " + login + " " + email + " " + password + " reader";
+        outputServer.println(serverRequest);
+        String serverResponse = inputServer.readLine();
+
+        if (serverResponse.equals("0")) {
+            outputClient.print("Success");
+        } else {
+            outputClient.print("Wrong login or password");
+        }
     }
 }

@@ -2,15 +2,44 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Log In</title>
     <link rel="stylesheet" href="css/login.css">
+    <title>Log In</title>
+    <script src="http://code.jquery.com/jquery-1.12.2.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#login-button").click(function () {
+                var userPassword = $("input#userPassword").val();
+                var userLogin = $("input#userLogin").val();
+                $.ajax({
+                    type: "POST",
+                    url: "login",
+                    data: {login: userLogin, password: userPassword},
+                    success: function (data) {
+                        alert("Successful request! Data is " + data.toString());
+                        /*if (data == 0) {
+                            document.location.href = "http://localhost:8181/library/library.html";
+                        }
+                        if (data == 1) {
+                            document.location.href = "http://localhost:8181/library/workshop.html";
+                        }*/
+                    },
+                    dataType: "text",
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        console.log(jqXHR);
+                        alert("Error report\n" + "jqXHR = " + jqXHR.status + "\n" + "textStatus = " + textStatus + "\n" +
+                                "errorThrown =  " + errorThrown);
+                    }
+                });
+            });
+        });
+    </script>
 </head>
 <body>
-    <form class="login-button" action="/library/login" method="post">
-        <h1>Login Form</h1>
-        <input type="text" name="user-login" placeholder="Enter login"/>
-        <input type="password" name="user-password" placeholder="Enter password"/>
-        <input class="login-submit" type="submit" value="Log in"/>
-    </form>
+<form class="login-form">
+    <h1>Login Form</h1>
+    <input id="userLogin" type="text" name="user-login" placeholder="Enter login"/>
+    <input id="userPassword" type="password" name="user-password" placeholder="Enter password"/>
+    <input id="login-button" type="submit" value="Log in"/>
+</form>
 </body>
 </html>

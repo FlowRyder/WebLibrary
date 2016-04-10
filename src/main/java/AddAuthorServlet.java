@@ -8,15 +8,16 @@ import java.io.IOException;
 /**
  * Created by FlowRyder.
  */
-public class AddGenreServlet extends HttpServlet {
+public class AddAuthorServlet extends HttpServlet {
     public void service(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
         response.setContentType("text/html");
 
-        String genreName = request.getParameter("genre-name");
+        String authorName = request.toString();
+        //String authorName = request.getParameter("genre-name");
 
-        /*SocketConnection.output.println("add_genre " + genreName);
+        /*SocketConnection.output.println("add_genre " + authorName);
         String string = SocketConnection.input.readLine();
         RequestDispatcher rs = request.getRequestDispatcher("workshop.html");
         rs.forward(request, response);*/

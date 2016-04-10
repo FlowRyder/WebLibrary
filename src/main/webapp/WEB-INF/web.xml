@@ -15,6 +15,16 @@
   </servlet-mapping>
 
   <servlet>
+    <servlet-name>AddAuthor</servlet-name>
+    <servlet-class>AddAuthorServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>AddAuthor</servlet-name>
+    <url-pattern>/addauthor</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
     <servlet-name>AddGenre</servlet-name>
     <servlet-class>AddGenreServlet</servlet-class>
   </servlet>
@@ -39,9 +49,21 @@
     <servlet-class>RegistrationServlet</servlet-class>
   </servlet>
 
+
   <servlet-mapping>
     <servlet-name>Registration</servlet-name>
     <url-pattern>/registration</url-pattern>
+  </servlet-mapping>
+
+
+  <servlet>
+    <servlet-name>Library</servlet-name>
+    <servlet-class>LibraryServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>Library</servlet-name>
+    <url-pattern>/library</url-pattern>
   </servlet-mapping>
 
   <welcome-file-list>
